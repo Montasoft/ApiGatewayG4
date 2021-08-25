@@ -8,24 +8,24 @@ class ProductAPI extends RESTDataSource {
     this.baseURL = serverConfig.product_api_url;    
   }
 
-  async productGet(userId){
+  async productGet(){
     return await this.get(`/product/`);    
   }
 
   
-  async productById(Id){
-    return await this.get(`/product/${Id}`);    
+  async productById(IdProducto){
+    return await this.get(`/product/${IdProducto}`);    
   }
 
  
-  async productByName(product){
+  async productByName(nombreProducto){
     return await this.get(`/product/query?name=${nombreProducto}`);    
   }
 
-  
+  /*
   async productCreate(product){
     product = new Object(JSON.parse(JSON.stringify(product)));
-    return await this.put(`/product/`, product);    
+    return await this.post(`/product/`, product);    
   }
 
 
@@ -33,7 +33,7 @@ class ProductAPI extends RESTDataSource {
     return await this.delete(`/product/${Id}`);    
   }
 
-
+*/
 }
 
 module.exports = ProductAPI;
