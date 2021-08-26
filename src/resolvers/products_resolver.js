@@ -1,3 +1,5 @@
+const { getDescription } = require("graphql");
+
 const productsResolver = {
     Query: {
         productGet: (_,{}, {dataSources}) => dataSources.productAPI.productGet(),
@@ -12,11 +14,17 @@ const productsResolver = {
         //}
     },
     Mutation: {
-      /*  createProduct: (_, {product}, {dataSources, userIdToken}) => {
-            return dataSources.productAPI.createProduct(product)
+      productCreate: (_, {product}, {dataSources, userIdToken}) => {return dataSources.productAPI.productCreate(product)},
+      productDeleteById: (_, {IdProducto}, {dataSources, userIdToken}) => {return dataSources.productAPI.ProductDeleteById(IdProducto)},
+      productUpDateById: (_,{IdProducto, NameProduct, description, stock, price}, {dataSources})=>{
+        const product  ={}
+        if (!product){
+          throw new Error(`No se pudo encontrar el producto con el Id: ${IdProducto}`);    
         }
-        */
-    }
+        return dataSources.productAPI.productUpDateById(IdProducto, NameProduct, description, stock, price)
+        
+      },
+    },
 };
 
 
